@@ -1,12 +1,17 @@
+# Page Replacement Algorithm 
+
+# GROUP 18
+# 2022/E/122 - RATHNAYAKA P.G.R.M.D.R.
+# 2022/E/180 - PRASANJANA W.T.
+
+
 import customtkinter as ctk
 from tkinter import messagebox
 import tkinter as tk
 
-# ---------------- Appearance Settings ---------------- #
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
-# ---------------- Global UI Colors ---------------- #
 APP_BG = "#0f172a"
 CARD_BG = "#1e293b"
 INNER_BG = "#111827"
@@ -36,7 +41,7 @@ BTN_CLEAR = "#b91c1c"
 BTN_CLEAR_HOVER = "#991b1b"
 
 
-# ---------------- Page Replacement Algorithms ---------------- #
+# Page Replacement Algorithms 
 
 def add_trace_row(trace, step, page, frame_slots, status, replaced):
     trace.append(
@@ -49,6 +54,7 @@ def add_trace_row(trace, step, page, frame_slots, status, replaced):
         }
     )
 
+# FIFO Algorithm Simulation
 
 def simulate_fifo(reference, frame_count):
     frame_slots = [None] * frame_count
@@ -78,6 +84,7 @@ def simulate_fifo(reference, frame_count):
 
     return faults, hits, trace
 
+# LRU Algorithm Simulation
 
 def simulate_lru(reference, frame_count):
     frame_slots = [None] * frame_count
@@ -112,6 +119,7 @@ def simulate_lru(reference, frame_count):
 
     return faults, hits, trace
 
+# LFU and MFU Helper Function
 
 def pick_freq_victim(frame_slots, freq, loaded_at, choose_max):
     candidates = [(i, p) for i, p in enumerate(frame_slots) if p is not None]
@@ -125,6 +133,7 @@ def pick_freq_victim(frame_slots, freq, loaded_at, choose_max):
 
     return min(equal, key=lambda item: loaded_at[item[1]])[0]
 
+# LFU Algorithm Simulation
 
 def simulate_lfu(reference, frame_count):
     frame_slots = [None] * frame_count
@@ -158,6 +167,7 @@ def simulate_lfu(reference, frame_count):
 
     return faults, hits, trace
 
+# MFU Algorithm Simulation
 
 def simulate_mfu(reference, frame_count):
     frame_slots = [None] * frame_count
@@ -192,7 +202,7 @@ def simulate_mfu(reference, frame_count):
     return faults, hits, trace
 
 
-# ---------------- Input Handling ---------------- #
+# Input Handling 
 
 def get_input():
     try:
@@ -220,7 +230,7 @@ def get_input():
         return None, None
 
 
-# ---------------- Text + Graph Helpers ---------------- #
+# Text + Graph Helpers 
 
 def format_trace_text(name, faults, hits, trace, frames):
     step_w = 4
@@ -417,7 +427,7 @@ def draw_compare_graph(all_traces, frame_count):
     graph_canvas.yview_moveto(0)
 
 
-# ---------------- GUI Button Functions ---------------- #
+# GUI Button Functions 
 
 def run_algorithm(name, simulator):
     frames, reference = get_input()
@@ -508,14 +518,13 @@ def toggle_mode():
         set_status("Dark mode enabled.")
 
 
-# ---------------- Main Window ---------------- #
+# Main Window
 
 app = ctk.CTk()
 app.title("Page Replacement Simulator")
 app.geometry("1500x900")
 app.minsize(1250, 760)
 
-# ---------------- Header ---------------- #
 
 header = ctk.CTkFrame(app, corner_radius=18, fg_color=CARD_BG)
 header.pack(fill="x", padx=18, pady=(16, 10))
@@ -536,7 +545,7 @@ subtitle = ctk.CTkLabel(
 )
 subtitle.pack(pady=(0, 10))
 
-# ---------------- Input Card ---------------- #
+# Input Card 
 
 input_card = ctk.CTkFrame(app, corner_radius=18, fg_color=CARD_BG)
 input_card.pack(fill="x", padx=18, pady=(0, 12))
@@ -583,7 +592,7 @@ ref_entry = ctk.CTkEntry(
 )
 ref_entry.grid(row=0, column=3, padx=(0, 0), pady=8, sticky="ew")
 
-# ---------------- Buttons Card ---------------- #
+# Buttons Card
 
 button_card = ctk.CTkFrame(app, corner_radius=18, fg_color=CARD_BG)
 button_card.pack(fill="x", padx=18, pady=(0, 12))
@@ -633,7 +642,7 @@ ctk.CTkButton(
     fg_color=BTN_CLEAR, hover_color=BTN_CLEAR_HOVER
 ).grid(row=0, column=6, padx=8, pady=8)
 
-# ---------------- Summary Cards ---------------- #
+# Summary Cards 
 
 summary_frame = ctk.CTkFrame(app, corner_radius=18, fg_color="transparent")
 summary_frame.pack(fill="x", padx=18, pady=(0, 10))
@@ -693,7 +702,7 @@ best_value = ctk.CTkLabel(
 )
 best_value.pack(pady=(0, 8))
 
-# ---------------- Main Content ---------------- #
+# Main Content
 
 main_views = ctk.CTkFrame(app, fg_color="transparent")
 main_views.pack(fill="both", expand=True, padx=18, pady=(0, 12))
