@@ -797,7 +797,7 @@ h_scroll.grid(row=1, column=0, sticky="ew")
 
 graph_canvas.configure(xscrollcommand=h_scroll.set, yscrollcommand=v_scroll.set)
 
-# ---------------- Status Bar ---------------- #
+# Status Bar 
 
 status_bar = ctk.CTkFrame(app, corner_radius=14, fg_color=CARD_BG)
 status_bar.pack(fill="x", padx=18, pady=(0, 16))
@@ -811,11 +811,11 @@ status_label = ctk.CTkLabel(
 )
 status_label.pack(fill="x", padx=12, pady=8)
 
-# ---------------- Default Startup ---------------- #
+# Default Startup
 
 insert_sample()
 update_summary_cards("-", "-", "-")
 
-# ---------------- Run App ---------------- #
+# Run the application
 
 app.mainloop()
